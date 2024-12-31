@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        /* Reset margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 22px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .buttonsClass {
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .buttons {
+            margin: 0.5rem;
+            padding: 0.2rem 1.5rem;
+            background-color:rgb(12, 237, 65);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .uttons {
+            margin: 0.5rem;
+            padding: 0.3rem 1.5rem;
+            background-color:rgb(237, 9, 43);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(28, 227, 14, 0.2);
+        }
+
+        .buttons:hover {
+            background-color:rgb(241, 8, 8);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .uttons:hover {
+            background-color:rgb(24, 231, 34);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-bar {
+            margin: 1rem auto;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 80%;
+            max-width: 500px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 0.8rem 1.2rem;
+            margin-left: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #1a73e8;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #1666c1;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            border-collapse: collapse;
+            background: #fff;
+            color: black;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table_st th, .table_st td {
+            padding: 1rem;
+            text-align: center;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+        }
+
+        .table_st th {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .table_st tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        .table_st tr:hover {
+            background-color: #e1f5fe;
+        }
+
+        .delete_btn {
+            padding: 0.5rem 1rem;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delete_btn:hover {
+            background-color: #1666c1;
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: #222;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 1rem;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        footer marquee {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VIJAB RECHARGE PLANS</h1>
+        <h2>Get reasonable plans here</h2>
+        <!-- Displaying the logged-in user's username -->
+        
+           <p style="position: absolute; top: 40px; right: 30px; font-size: 1.2rem;"> Welcome, {{ request.user.username }}!
+        <a href="{% url 'logouturl' %}" class="uttons" style="position: absolute; top: 50px; right: 20px; font-size: 0.9rem;">Logout</a>
+    </header>
+    {%if user.is_superuser%}
+    <marquee>
+        <p> WELCOM SUPERUSER {{request.user.username}} <p>
+    </marquee>
+    {%endif%}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="buttonsClass">
+            <a href="{% url 'mainpage2url' %}" class="buttons">BEST SELLING PACKS</a>
+            <a href="{% url 'mainpage3url' %}" class="buttons">POPULAR</a>
+            <a href="{% url 'mainpage4url' %}" class="buttons">DATA PACKS</a>
+            <a href="{% url 'mainpage5url' %}" class="buttons">YEARLY PLANS</a>
+            <a href="{% url 'mainpage6url' %}" class="buttons">SPECIAL RECHARGE</a>
+            <a href="{% url 'mainpage7url' %}" class="buttons">FULL TALK TIME</a>
+        </div>
+        {% if user.is_superuser %}
+        
+        <div class="buttonsClass">
+            <a href="{% url 'sellingurl' %}"class="uttons">ADD PACK</a>
+            <a href="{% url 'interneturl' %}"class="uttons">ADD INTERNET</a>
+            <a href="{%url 'candateurl'%}"class="uttons">ALL RECHARGED CANDIATES<a>
+             <a href="{%url 'delete1url'%}" class="uttons" >DELETE PACK</a>
+        </div>
+       {% endif %}
+    
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for plans..." onkeyup="searchPlans()">
+            <button type="button">Search</button>
+        </div>
+
+        <table class="table_st" id="plansTable">
+            <thead>
+                <tr>
+                    <th>PRICE</th>
+                    <th>VALIDITY</th>
+                    <th>DATA</th>
+                    <th>HAS-DATA-RECYCLE</th>
+                    <th>PROCEED</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in result %}
+                <tr>
+                    <td>{{ i.price }}</td>
+                    <td>{{ i.validity }}/days</td>
+                    <td>{{ i.data }}GB/day</td>
+                    <td>{{ i.has_data_recycle }}</td>
+                    <td><a class="delete_btn" href="{% url 'contacturl' i.price|floatformat:0 %}">BUY NOW</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+
+    <footer>
+        <marquee>Developed by Parama Jyothi Nayak | &copy; 2024 All Rights Reserved</marquee>
+    </footer>
+
+    <script>
+    
+        function searchPlans() {
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById('plansTable');
+            var tr = table.getElementsByTagName('tr');
+            
+            
+            for (var i = 1; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td');
+                var matchFound = false;
+
+                
+                for (var j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        var cellText = td[j].textContent || td[j].innerText;
+                        if (cellText.toLowerCase().indexOf(filter) > -1) {
+                            matchFound = true;
+                            break; 
+                        }
+                    }
+                }
+
+
+                if (matchFound) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
